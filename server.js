@@ -17,6 +17,13 @@ app.get("/musicians", async(request, response) =>{
       }
 })
 
+app.get('/musicians/:id', async(req, res) => {
+  keyForRes = req.params.id
+  objFound = await Musician.findByPk(keyForRes)
+  res.json(objFound)
+
+})
+
 app.listen(port, () => {
     sequelize.sync();
     console.log(`Your server is listening on port http://localhost:${port}/musicians`);
